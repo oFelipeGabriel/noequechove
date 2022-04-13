@@ -1,17 +1,14 @@
-var express = require('express')
-var path = require('path')
-var serveStatic = require('serve-static')
+const express = require('express');
+const path = require('path');
+const nomeApp = process.env.npm_package_name || 'noequechove';
+const app = express();
+const port = process.env.PORT || 8080
 
-var app = express()
-app.use(serveStatic(path.join(__dirname, 'dist/noequechove,')))
+app.use(express.static(`${__dirname}/dist/${nomeApp}`));
 
-var port = process.env.PORT || 8080
-// app.listen(port)
-// console.log('server started ' + port)
-
-app.get('/*', function(req,res) {
-    res.sendFile(path.join(__dirname+
-    '/dist/noequechove/index.html'));
+app.get('/*', (req, res) => {
+res.sendFile(path.join(`${__dirname}/dist/${nomeApp}/index.html`));
 });
-app.listen(port || 8080);
-console.log('server started ' + port)
+
+app.listen(port);
+console.log(`Servidor iniciado na porta ${port}`);
