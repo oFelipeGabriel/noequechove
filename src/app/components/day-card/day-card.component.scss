@@ -1,0 +1,45 @@
+.day-card{
+    border: 1px solid black;
+    margin: 1rem;
+}
+.content{
+    span{
+        display: block;
+    }
+}
+.rain{
+    .subtitle{
+        color:#ccc;
+    }
+    color: #ccc;
+    background: rgb(52,51,71);
+    background: linear-gradient(
+        50deg, rgba(52,51,71,1) 0%, 
+        rgba(114,122,157,1) 45%, 
+        rgba(210,247,255,1) 100%
+        );
+}
+.cloudly_day{
+    .subtitle{
+        color:#222;
+    }
+    color: #222;
+    background: rgb(164,184,217);
+    background: linear-gradient(
+        50deg, rgba(164,184,217,1) 0%, 
+        rgba(201,206,230,1) 36%, 
+        rgba(252,254,255,1) 100%
+        );
+}
+.clear_day{
+    .subtitle{
+        color:#d48d37;
+    }
+    color: #d48d37;
+    background: rgb(226,218,119);
+    background: linear-gradient(
+        50deg, rgba(226,218,119,1) 0%, 
+        rgba(230,225,169,1) 36%, 
+        rgba(248,250,214,1) 100%
+        );
+}
