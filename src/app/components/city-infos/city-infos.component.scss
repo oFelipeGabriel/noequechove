@@ -1,4 +1,6 @@
 .city-infos{
+  margin-top: 1rem;
+  padding: 0 1rem;
   h2{
     text-align: center;
   }
@@ -7,4 +9,27 @@
     width: 100%;
     text-align: center;
   }
+  .d-flex{
+    display: flex;
+    div:first-child{
+      flex: 1;
+      span{
+        text-align: left;
+      }
+    }
+    div:last-child{
+      flex: 1;
+      span{
+        text-align: right;
+      }
+    }
+  }
+}
+@media screen and (max-width: 700px) {
+ .d-flex{
+   display: block !important;
+   div span{
+     text-align: left !important;
+   }
+ }
 }

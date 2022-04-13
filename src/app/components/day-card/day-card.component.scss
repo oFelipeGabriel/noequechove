@@ -33,9 +33,9 @@
 }
 .clear_day{
     .subtitle{
-        color:#d48d37;
+        color:#b56e17;
     }
-    color: #d48d37;
+    color: #b56e17;
     background: rgb(226,218,119);
     background: linear-gradient(
         50deg, rgba(226,218,119,1) 0%, 
@@ -43,3 +43,31 @@
         rgba(248,250,214,1) 100%
         );
 }
+.cloud{
+    .subtitle{
+        color:#DDD;
+    }
+    color: #DDD;
+    background: rgb(119,180,226);
+    background: linear-gradient(
+        50deg, 
+        rgba(119,180,226,1) 0%, 
+        rgba(169,206,230,1) 36%, 
+        rgba(229,244,250,1) 100%
+    );
+}
+
+/*
+storm - tempestade
+snow - neve
+hail - granizo
+rain - chuva
+fog - neblina
+clear_day - dia limpo
+clear_night - noite limpa
+cloud - nublado
+cloudly_day - nublado de dia
+cloudly_night - nublado de noite
+none_day - erro ao obter mas está de dia
+none_night - erro ao obter mas está de noite
+*/

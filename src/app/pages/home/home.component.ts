@@ -11,7 +11,7 @@ import DayModel from 'src/app/models/day.model';
 export class HomeComponent implements OnInit {
   dias: any[] = []
   city: City = new City();
-  baseUrl: string = 'https://api.hgbrasil.com/weather?key=4dc8c1dc&format=json-cors&user_ip=remote';
+  baseUrl: string = 'https://api.hgbrasil.com/weather';
   apiKey: string = '4dc8c1dc';
   formatJson: string = 'json-cors';
 
@@ -20,10 +20,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     axios.get(
-      `${this.baseUrl}?
-      key=${this.apiKey}&
-      format=${this.formatJson}&
-      user_ip=remote`).then(res => {
+      `${this.baseUrl}?key=${this.apiKey}&format=${this.formatJson}&user_ip=remote`).then(res => {
       if(res.data?.results?.forecast?.length > 0) {
         res.data.results.forecast.map((dia: DayModel) => {
           this.dias.push(new DayModel(dia));

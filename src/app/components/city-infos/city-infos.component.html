@@ -1,5 +1,24 @@
-<div class="city-infos">
-    <h2>{{city?.city}}</h2>
-    <span>{{city?.date}}</span>
-    <span>{{city?.description}}</span>
+<div class="city-infos" *ngIf="city?.city">
+  <mat-card>
+    <mat-card-header>
+      <h2>{{city?.city}}</h2>
+    </mat-card-header>
+    <mat-card-subtitle>
+      {{city?.date}} {{city?.time}} - {{city?.description}}
+    </mat-card-subtitle>
+    <mat-card-content>
+      <div class="d-flex">
+        <div>
+          <span>Temperatura atual: {{city?.temp}} Cº</span>
+          <span>Humidade relativa do ar: {{city?.humidity}}%</span>
+          <span>Velocidade do vento: {{city?.wind_speedy}}</span>
+        </div>
+        <div>
+          <span>Nascer do sol: {{city?.sunrise}}</span>
+          <span>Por do sol: {{city?.sunset}}</span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+    
 </div>
