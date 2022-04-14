@@ -10,6 +10,8 @@ import { CityInfosComponent } from './components/city-infos/city-infos.component
 
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,13 @@ import {MatIconModule} from '@angular/material/icon';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
