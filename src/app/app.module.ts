@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DayCardComponent } from './components/day-card/day-card.component';
+import { CityInfosComponent } from './components/city-infos/city-infos.component';
 
 import {MatCardModule} from '@angular/material/card';
-import { CityInfosComponent } from './components/city-infos/city-infos.component';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CityInfosComponent } from './components/city-infos/city-infos.component
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

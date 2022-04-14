@@ -1,6 +1,7 @@
 
-<div>
+<div class="content">
   <app-city-infos [city]="city"></app-city-infos>
+  <h3 class="prev-title">Previão para os próximos dias</h3>
   <div *ngFor="let dia of dias">
     <app-day-card [day]="dia"></app-day-card>
   </div>
