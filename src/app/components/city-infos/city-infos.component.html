@@ -1,13 +1,15 @@
 <div class="city-infos" *ngIf="city?.city">
   <mat-card>
     <mat-card-header>
-      <h2>{{city?.city}}</h2>
+      <h2>{{city?.city}} 
+        <!-- <mat-icon (click)="alteraCidade()">drive_file_rename_outline</mat-icon> -->
+      </h2>
     </mat-card-header>
     <mat-card-subtitle>
       {{city?.date}} {{city?.time}} - {{city?.description}}
     </mat-card-subtitle>
     <mat-card-content>
-      <div class="d-flex">
+      <div class="d-flex descriptions">
         <div>
           <span>Temperatura atual: {{city?.temp}} Cº</span>
           <span>Umidade relativa do ar: {{city?.humidity}}%</span>

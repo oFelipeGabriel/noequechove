@@ -1,8 +1,24 @@
 
 <div class="content">
-  <app-city-infos [city]="city"></app-city-infos>
-  <h3 class="prev-title">Previão para os próximos dias</h3>
-  <div *ngFor="let dia of dias">
-    <app-day-card [day]="dia"></app-day-card>
+  <div *ngIf="isLoading; else cityInfos">
+    <h3 class="text-center">Carregando</h3>
+    <mat-spinner class="m-x-auto"></mat-spinner>
   </div>
+  <ng-template #cityInfos>
+    <app-city-infos [city]="city" (mudaCidade)="abreModal($event)"></app-city-infos>
+  </ng-template>
+  <div *ngIf="dias.length">
+    <div class="d-flex">
+      <div class="pl-1">
+        <h3 class="prev-title">Previsão para os próximos dias</h3>
+      </div>
+      <div>
+        <caption class="caption">Fonte: <a href="https://hgbrasil.com" target="_blank">hgbrasil.com</a></caption>
+      </div>
+    </div>
+    <div *ngFor="let dia of dias">
+      <app-day-card [day]="dia"></app-day-card>
+    </div>
+  </div>
+  
 </div>

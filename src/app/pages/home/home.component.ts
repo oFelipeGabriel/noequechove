@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import axios from 'axios';
+import { ModalMudaCidadeComponent } from 'src/app/components/modal-muda-cidade/modal-muda-cidade.component';
 import City from 'src/app/models/city.model';
 import DayModel from 'src/app/models/day.model';
+import { HgbrasilService } from 'src/app/services/hgbrasil.service';
 
 @Component({
   selector: 'app-home',
@@ -9,30 +12,42 @@ import DayModel from 'src/app/models/day.model';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  isLoading: boolean = true;
   dias: any[] = []
   city: City = new City();
-  baseUrl: string = 'https://api.hgbrasil.com/weather';
-  apiKey: string = '4dc8c1dc';
-  formatJson: string = 'json-cors';
+  nomeCidade: string = '';
 
 
-  constructor() { }
+  constructor(
+    private hgBrasil: HgbrasilService,
+    public dialog: MatDialog
+    ) { }
 
   ngOnInit(): void {
-    axios.get(
-      `${this.baseUrl}?key=${this.apiKey}&format=${this.formatJson}&user_ip=remote`).then(res => {
-      if(res.data?.results?.forecast?.length > 0) {
-        res.data.results.forecast.map((dia: DayModel) => {
+    this.hgBrasil.buscaPrevisao().then(data => {
+      if(data?.results?.forecast?.length > 0) {
+        data.results.forecast.map((dia: DayModel) => {
           this.dias.push(new DayModel(dia));
         });
-        this.city = new City(res.data.results)
-        console.log('result', this.city, res.data.results)
+        this.city = new City(data.results)
       }
-      console.log(this.dias);
+      this.isLoading = false
     }).catch(err => {
+      this.isLoading = false
       console.log(err);
     }
     );
+  }
+
+  abreModal(status: boolean){
+    const dialogRef = this.dialog.open(ModalMudaCidadeComponent, {
+      width: '90%',
+      data: {cidade: this.nomeCidade}
+      });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      this.nomeCidade = result;
+    });
   }
 
 }
