@@ -1,6 +1,6 @@
 {
-  "name": "<Application Name>",
-  "short_name": "<Application Short Name>",
+  "name": "Noé que chove",
+  "short_name": "Noé que chove",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
