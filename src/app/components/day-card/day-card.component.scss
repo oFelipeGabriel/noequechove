@@ -61,10 +61,13 @@
         );
 }
 .cloud{
+    color: #fdfdeb;
     .subtitle{
-        color:#DDD;
+        color:#fdfdeb;
     }
-    color: #DDD;
+    .mat-icon{
+        color:#d0d06f
+    }
     background: rgb(119,180,226);
     background: linear-gradient(
         50deg, 

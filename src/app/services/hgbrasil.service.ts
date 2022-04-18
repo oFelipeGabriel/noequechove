@@ -40,4 +40,22 @@ export class HgbrasilService {
       console.log(err);
     });
   }
+  getByWoeid(woeid: number){
+    let url = this.baseUrl
+    url += '/weather';
+    const params = {
+      key: this.apiKey,
+      format: this.formatJson,
+      woeid
+    }
+    return axios.get(url, {params})
+      .then(res => {
+        return res.data
+      }).catch(err => {
+        console.log(err);
+      }
+    );
+  }
 }
+
+

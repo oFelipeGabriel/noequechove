@@ -39,6 +39,19 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  buscaPorWoeid(woeid: number){
+    this.hgBrasil.getByWoeid(woeid).then(data => {
+      console.log('buscou', data);
+      this.city = new City(data.results);
+      this.dias = [];
+      data.results.forecast.map((dia: DayModel) => {
+        this.dias.push(new DayModel(dia));
+      });
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+
   abreModal(status: boolean){
     const dialogRef = this.dialog.open(ModalMudaCidadeComponent, {
       width: '90%',
@@ -47,6 +60,9 @@ export class HomeComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
       this.nomeCidade = result;
+      if(result.data?.woeid) {
+        this.buscaPorWoeid(result.data.woeid);
+      }
     });
   }
 

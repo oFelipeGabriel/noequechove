@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import CityWoeid from 'src/app/models/cityWoeid.model';
 import { HgbrasilService } from 'src/app/services/hgbrasil.service';
 
 export interface DialogData {
@@ -13,6 +14,14 @@ export interface DialogData {
 })
 export class ModalMudaCidadeComponent implements OnInit {
   cidade: FormControl = new FormControl();
+  result?: CityWoeid;
+
+  status: string = 'inicial';
+  STATUS = {
+    SUCCESS: 'success',
+    ERROR: 'error',
+    LOADING: 'loading'
+  }
 
   constructor(
     private hgBrasil: HgbrasilService,
@@ -24,13 +33,16 @@ export class ModalMudaCidadeComponent implements OnInit {
   }
 
   fechaModal(){
-    this.dialogRef.close();
+    this.dialogRef.close({data: this.result});
+    this.result = undefined;
   }
 
   buscar(){
-    console.log('pesquisar')
     this.hgBrasil.getWoeid(this.cidade.value).then(data => {
-      console.log(data)
+      if(data.error){
+        this.status = this.STATUS.ERROR;
+      }
+      this.result = new CityWoeid(data);
     }
     ).catch(err => {
       console.log(err)
